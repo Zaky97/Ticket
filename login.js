@@ -9,6 +9,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 // Firebase configuration
+// Import SweetAlert library (assuming you have included it in your HTML)
+
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAiA-CPBjHgdNMSkECYJ3D55S-OJWeRpNM",
   authDomain: "noir-b0cf8.firebaseapp.com",
@@ -26,28 +29,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// Function to display modal box with alert message
-const showAlertModal = (message) => {
-  const modal = document.getElementById("myModal");
-  const modalMessage = document.getElementById("modal-message");
-  const closeButton = document.getElementsByClassName("close")[0];
-
-  modalMessage.textContent = message;
-  modal.style.display = "block";
-
-  // Close the modal when the close button is clicked
-  closeButton.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  // Close the modal when clicking anywhere outside of it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-};
-
 // Function to handle sign-up
 const signUp = async (email, password) => {
   try {
@@ -63,21 +44,32 @@ const signUp = async (email, password) => {
 
     // Sign-up successful, you can add further logic here
     console.log("Sign-up successful:", userCredential.user.uid);
-    showAlertModal(
-      "Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi."
-    );
-    const sign_in_btn = document.getElementById("sign-in-btn");
-    sign_in_btn.click();
-    sign_in_btn.addEventListener("click", () => {
-      container.classList.add("sign-in-mode");
+    Swal.fire({
+      icon: "success",
+      title: "Pendaftaran Berhasil!",
+      text: "Silakan periksa email Anda untuk verifikasi.",
+    }).then(() => {
+      const sign_in_btn = document.getElementById("sign-in-btn");
+      sign_in_btn.click();
+      sign_in_btn.addEventListener("click", () => {
+        container.classList.add("sign-in-mode");
+      });
     });
   } catch (error) {
     // Handle sign-up errors
     console.error("Sign-up error:", error.message);
     if (error.code === "auth/email-already-in-use") {
-      showAlertModal("Email Sudah Digunakan");
+      Swal.fire({
+        icon: "error",
+        title: "Email Sudah Digunakan",
+        text: "Gunakan email lain atau gunakan opsi lupa password.",
+      });
     } else {
-      showAlertModal("Terjadi kesalahan saat mendaftar pengguna baru.");
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan",
+        text: "Terjadi kesalahan saat mendaftar pengguna baru.",
+      });
     }
   }
 };
@@ -94,7 +86,11 @@ const signIn = async (email, password) => {
     window.location.replace("main/main.html");
   } catch (error) {
     console.error("Sign-in error:", error.message);
-    showAlertModal("Akun Tidak Ditemukan");
+    Swal.fire({
+      icon: "error",
+      title: "Akun Tidak Ditemukan",
+      text: "Pastikan email dan password Anda benar.",
+    });
   }
 };
 
