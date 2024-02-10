@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // If Firebase token exists, redirect to main page
   const firebaseToken = getCookie("firebaseToken");
   if (firebaseToken) {
-    window.location.replace("main/main.html");
+    window.location.replace("preorder/preorder.html");
   }
 });
 

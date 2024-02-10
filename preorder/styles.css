@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,17 +10,47 @@
   .kol2 {
     display: none;
   }
+
   .navbar-nav {
     padding-top: 10px;
     padding-bottom: 10px;
   }
   .kolom2 {
     padding-bottom: 30px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+  .kol2 img {
+    margin-left: 0;
+  }
+  .hero p {
+    font-size: 18px;
   }
 }
 
 .navbar img {
   margin-left: 30px;
+}
+
+.kolom2 {
+  padding-bottom: 30px;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.order-form,
+.status {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.order-form {
+  margin: 0 auto;
+  max-width: 90%;
+  width: 180%;
 }
 
 .nav-link {
@@ -38,6 +69,7 @@ section {
   background-color: #3586ff;
   overflow: hidden;
 }
+
 section .air {
   position: absolute;
   bottom: 0;
@@ -53,9 +85,9 @@ section .air.air1 {
   z-index: 1000;
   opacity: 1;
   animation-delay: 0s;
-
   bottom: 0;
 }
+
 section .air.air2 {
   animation: wave2 15s linear infinite;
   z-index: 999;
@@ -63,6 +95,7 @@ section .air.air2 {
   animation-delay: -5s;
   bottom: 10px;
 }
+
 section .air.air3 {
   animation: wave 30s linear infinite;
   z-index: 998;
@@ -70,6 +103,7 @@ section .air.air3 {
   animation-delay: -2s;
   bottom: 15px;
 }
+
 section .air.air4 {
   animation: wave2 5s linear infinite;
   z-index: 997;
@@ -86,6 +120,7 @@ section .air.air4 {
     background-position-x: 1000px;
   }
 }
+
 @keyframes wave2 {
   0% {
     background-position-x: 0px;
@@ -95,31 +130,9 @@ section .air.air4 {
   }
 }
 
-.kolom2 {
-  margin-top: 15%;
-  margin-bottom: 5%;
-}
-
-.order-form {
-  background-color: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-.order-form h2 {
-  padding: 20px;
-  font-family: "Bebas Neue", sans-serif;
-}
-
-.form-group {
-  padding: 3px;
-}
-
 .kol2 img {
   margin-left: 60px;
-  animation: idleAnimation 3s infinite alternate; /* Menambahkan animasi saat idle */
+  animation: idleAnimation 3s infinite alternate;
 }
 
 @keyframes idleAnimation {
@@ -135,7 +148,20 @@ section .air.air4 {
 }
 
 .hero {
-  margin-top: 150px;
+  text-align: center;
+  padding-bottom: 60px;
+  padding-top: 40px;
+}
+
+.hero h2,
+.hero p,
+.hero span {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.hero p,
+.hero span {
+  font-size: 20px;
 }
 
 form button {
@@ -149,20 +175,5 @@ form button span {
 }
 
 .status {
-  background-color: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 10px;
   display: none;
-}
-
-.status h2 {
-  font-weight: bold;
-  font-family: "Bebas Neue", sans-serif;
-}
-
-.status p {
-  margin-top: 20px;
-  font-size: 20px;
-  font-family: "Poppins", sans-serif;
 }
