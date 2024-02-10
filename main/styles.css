@@ -1,11 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 * {
   margin: 0;
   padding: 0;
 }
+
+.navbar img {
+  margin-left: 30px;
+}
+
+.nav-link {
+  margin-right: 40px;
+  font-size: 30px;
+  font-family: "Bebas Neue", sans-serif;
+  display: inline-block;
+}
+
 section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  padding-bottom: 15%;
   background-color: #3586ff;
   overflow: hidden;
 }
@@ -63,4 +77,33 @@ section .air.air4 {
   100% {
     background-position-x: -1000px;
   }
+}
+
+.order-form {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 60px;
+  margin-top: 150px;
+  font-weight: bold;
+}
+
+.order-form h2 {
+  padding: 20px;
+}
+
+.kol2 img {
+  transition: all 0.3s ease-in-out;
+  margin-left: 60px;
+  margin-top: 150px;
+}
+.kol2 img:hover {
+  filter: grayscale(
+    100%
+  ); /* Mengubah gambar menjadi grayscale ketika dihover */
+}
+
+.hero {
+  margin-top: 150px;
 }

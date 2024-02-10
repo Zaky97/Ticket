@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Navbar with Bootstrap and Animated Wave Background</title>
+        <title>SMAN 9 KOTA BEKASI</title>
         <!-- Bootstrap CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS for Animated Wave Background -->
@@ -12,18 +12,70 @@
     </head>
 
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="#">Your Logo</a>
+            <a href="https://www.sman9kotabekasi.sch.id/">
+                <img src="https://www.sman9kotabekasi.sch.id/assets/images/SMAN_9.png" width="300px">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Buy Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">S&K</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
 
-        <!-- wave background -->
         <section>
+            <div class="container hero">
+                <h2>Selamat</h2>
+            </div>
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Form order ticket -->
+                        <div class="order-form">
+                            <h2>Preorder Ticket</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Nomer Ponsel</label>
+
+                                    <input type="tel" class="form-control" id="tel" placeholder="Enter phone number"
+                                        value="+62">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 kol2">
+                        <img src="../img/register.svg" alt="" width="500px" height="auto">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- wave background -->
             <div class='air air1'></div>
             <div class='air air2'></div>
             <div class='air air3'></div>
@@ -36,7 +88,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- JavaScript for Animated Wave Background -->
         <script src="cookie-main.js"></script>
-        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="module" src="script.js"></script>
     </body>
 
 </html>
