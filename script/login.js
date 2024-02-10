@@ -91,7 +91,15 @@ const signIn = async (email, password) => {
       password
     );
 
-    document.cookie = "userLoggedIn=true";
+    // Check if the email is verified
+    if (!userCredential.user.emailVerified) {
+      throw new Error(
+        "Email belum diverifikasi. Silakan cek email Anda untuk verifikasi."
+      );
+    }
+
+    const idToken = await userCredential.user.getIdToken();
+    document.cookie = `firebaseToken=${idToken}; path=/`;
 
     Swal.fire({
       icon: "success",
@@ -112,6 +120,13 @@ const signIn = async (email, password) => {
     let errorMessage = "Pastikan email dan password Anda benar.";
     if (error.code === "auth/user-not-found") {
       errorMessage = "Akun tidak ditemukan.";
+    } else if (error.code === "auth/wrong-password") {
+      errorMessage = "Password yang dimasukkan salah.";
+    } else if (error.code === "auth/too-many-requests") {
+      errorMessage = "Terlalu banyak percobaan masuk. Coba lagi nanti.";
+    } else if (error.code === "auth/email-not-verified") {
+      errorMessage =
+        "Email belum diverifikasi. Silakan cek email Anda untuk verifikasi.";
     }
     Swal.fire({
       icon: "error",
@@ -155,4 +170,17 @@ document.addEventListener("DOMContentLoaded", function () {
   if (document.cookie.indexOf("userLoggedIn=true") !== -1) {
     window.location.replace("main/main.html");
   }
+
+  // If Firebase token exists, redirect to main page
+  const firebaseToken = getCookie("firebaseToken");
+  if (firebaseToken) {
+    window.location.replace("main/main.html");
+  }
 });
+
+// Function to get cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
