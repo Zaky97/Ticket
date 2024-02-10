@@ -31,12 +31,7 @@ const signUpAndSendEmailVerification = async (email, password) => {
     // Check if the email has been used
     const methods = await fetchSignInMethodsForEmail(auth, email);
     if (methods.length > 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Email Sudah Digunakan",
-        text: "Gunakan email lain atau gunakan opsi lupa password.",
-      });
-      return;
+      throw new Error("Email Sudah Digunakan");
     }
 
     // Create a new user
@@ -65,11 +60,19 @@ const signUpAndSendEmailVerification = async (email, password) => {
   } catch (error) {
     // Handle sign-up errors
     console.error("Sign-up error:", error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Terjadi Kesalahan",
-      text: "Terjadi kesalahan saat mendaftar pengguna baru.",
-    });
+    if (error.message === "Email Sudah Digunakan") {
+      Swal.fire({
+        icon: "error",
+        title: "Email Sudah Digunakan",
+        text: "Gunakan email lain atau gunakan opsi lupa password.",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan",
+        text: "Terjadi kesalahan saat mendaftar pengguna baru.",
+      });
+    }
   }
 };
 
