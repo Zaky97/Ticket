@@ -38,12 +38,7 @@ const signUp = async (email, password) => {
 
     // Sign-up successful, you can add further logic here
     console.log("Sign-up successful:", userCredential.user.uid);
-
-    // Inform user to check their email for verification
     alert("Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi.");
-
-    // Redirect to main page (if needed)
-    // window.location.replace("main/main.html");
   } catch (error) {
     // Handle sign-up errors
     console.error("Sign-up error:", error.message);
@@ -60,16 +55,9 @@ const signIn = async (email, password) => {
       password
     );
     console.log("Sign-in successful:", userCredential.user.uid);
-    // Redirect user to main page
-    // window.location.replace("main/main.html");
+    window.location.replace("main/main.html");
   } catch (error) {
     console.error("Sign-in error:", error.message);
-    const container = document.querySelector(".container"); // Define container here
-    const sign_up_btn = document.querySelector("#sign-up-btn");
-    sign_up_btn.addEventListener("click", () => {
-      container.classList.add("sign-up-mode");
-    });
-
     alert("Akun Tidak Ditemukan");
   }
 };
