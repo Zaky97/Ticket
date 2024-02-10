@@ -8,10 +8,6 @@ import {
   fetchSignInMethodsForEmail,
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-// Firebase configuration
-// Import SweetAlert library (assuming you have included it in your HTML)
-
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAiA-CPBjHgdNMSkECYJ3D55S-OJWeRpNM",
   authDomain: "noir-b0cf8.firebaseapp.com",
@@ -29,10 +25,21 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// Function to handle sign-up
-const signUp = async (email, password) => {
+// Function to handle sign-up and send email verification
+const signUpAndSendEmailVerification = async (email, password) => {
   try {
-    // Try to create a new user
+    // Check if the email has been used
+    const methods = await fetchSignInMethodsForEmail(auth, email);
+    if (methods.length > 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Email Sudah Digunakan",
+        text: "Gunakan email lain atau gunakan opsi lupa password.",
+      });
+      return;
+    }
+
+    // Create a new user
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -42,7 +49,7 @@ const signUp = async (email, password) => {
     // Send email verification
     await sendEmailVerification(auth.currentUser);
 
-    // Sign-up successful, you can add further logic here
+    // Sign-up successful
     console.log("Sign-up successful:", userCredential.user.uid);
     Swal.fire({
       icon: "success",
@@ -58,19 +65,11 @@ const signUp = async (email, password) => {
   } catch (error) {
     // Handle sign-up errors
     console.error("Sign-up error:", error.message);
-    if (error.code === "auth/email-already-in-use") {
-      Swal.fire({
-        icon: "error",
-        title: "Email Sudah Digunakan",
-        text: "Gunakan email lain atau gunakan opsi lupa password.",
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Terjadi Kesalahan",
-        text: "Terjadi kesalahan saat mendaftar pengguna baru.",
-      });
-    }
+    Swal.fire({
+      icon: "error",
+      title: "Terjadi Kesalahan",
+      text: "Terjadi kesalahan saat mendaftar pengguna baru.",
+    });
   }
 };
 
@@ -115,5 +114,5 @@ document.querySelector(".sign-up-form").addEventListener("submit", (e) => {
   const password = document.querySelector(
     ".sign-up-form input[type='password']"
   ).value;
-  signUp(email, password);
+  signUpAndSendEmailVerification(email, password);
 });
