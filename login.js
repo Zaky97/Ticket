@@ -64,6 +64,7 @@ const signIn = async (email, password) => {
     // window.location.replace("main/main.html");
   } catch (error) {
     console.error("Sign-in error:", error.message);
+    const container = document.querySelector(".container"); // Define container here
     const sign_up_btn = document.querySelector("#sign-up-btn");
     sign_up_btn.addEventListener("click", () => {
       container.classList.add("sign-up-mode");
