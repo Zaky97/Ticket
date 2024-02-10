@@ -20,6 +20,8 @@ const firebaseConfig = {
   measurementId: "G-CDZKCSXS56",
 };
 
+firebase.auth().setLogLevel("error");
+
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -30,7 +32,7 @@ const signUpAndSendEmailVerification = async (email, password) => {
   try {
     // Check if the email has been used
     const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (methods.length > 0) {
+    if (methods && methods.length > 0) {
       throw new Error("Email Sudah Digunakan");
     }
 
@@ -59,8 +61,8 @@ const signUpAndSendEmailVerification = async (email, password) => {
     });
   } catch (error) {
     // Handle sign-up errors
-    console.error("Sign-up error:", error.message);
-    if (error.message === "Email Sudah Digunakan") {
+    // console.error("Sign-up error:", error.message);
+    if (error.code === "auth/email-already-in-use") {
       Swal.fire({
         icon: "error",
         title: "Email Sudah Digunakan",
