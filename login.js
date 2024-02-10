@@ -59,6 +59,13 @@ const signIn = async (email, password) => {
   } catch (error) {
     console.error("Sign-in error:", error.message);
     alert("Akun Tidak Ditemukan");
+
+    // Menambahkan event listener untuk tombol signup
+    const sign_up_btn = document.getElementById("sign-up-btn");
+    sign_up_btn.click();
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-up-mode");
+    });
   }
 };
 
