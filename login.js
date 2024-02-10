@@ -20,65 +20,63 @@ const firebaseConfig = {
   measurementId: "G-CDZKCSXS56",
 };
 
-firebase.auth().setLogLevel("error");
-
-// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// Function to handle sign-up and send email verification
 const signUpAndSendEmailVerification = async (email, password) => {
   try {
-    // Check if the email has been used
-    const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (methods && methods.length > 0) {
-      throw new Error("Email Sudah Digunakan");
+    if (password.length < 8) {
+      throw new Error("Password harus terdiri dari minimal 8 karakter.");
     }
 
-    // Create a new user
+    const methods = await fetchSignInMethodsForEmail(auth, email);
+    if (methods && methods.length > 0) {
+      throw new Error("Email sudah digunakan.");
+    }
+
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-
-    // Send email verification
     await sendEmailVerification(auth.currentUser);
 
-    // Sign-up successful
     console.log("Sign-up successful:", userCredential.user.uid);
     Swal.fire({
       icon: "success",
       title: "Pendaftaran Berhasil!",
       text: "Silakan periksa email Anda untuk verifikasi.",
     }).then(() => {
-      const sign_in_btn = document.getElementById("sign-in-btn");
-      sign_in_btn.click();
-      sign_in_btn.addEventListener("click", () => {
-        container.classList.add("sign-in-mode");
-      });
+      showSignIn();
     });
   } catch (error) {
-    // Handle sign-up errors
-    // console.error("Sign-up error:", error.message);
-    if (error.code === "auth/email-already-in-use") {
-      Swal.fire({
-        icon: "error",
-        title: "Email Sudah Digunakan",
-        text: "Gunakan email lain atau gunakan opsi lupa password.",
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Terjadi Kesalahan",
-        text: "Terjadi kesalahan saat mendaftar pengguna baru.",
-      });
+    let errorMessage = "Terjadi kesalahan saat mendaftar pengguna baru.";
+    switch (error.code) {
+      case "auth/email-already-in-use":
+        errorMessage =
+          "Email sudah digunakan. Gunakan email lain atau gunakan opsi lupa password.";
+        break;
+      case "auth/weak-password":
+        errorMessage =
+          "Password terlalu lemah. Gunakan password dengan minimal 8 karakter.";
+        break;
+      case "auth/network-request-failed":
+        errorMessage =
+          "Terjadi masalah dengan koneksi internet. Silakan coba lagi.";
+        break;
+      default:
+        // Tangani kesalahan lain jika diperlukan
+        break;
     }
+    Swal.fire({
+      icon: "error",
+      title: "Terjadi Kesalahan",
+      text: errorMessage,
+    });
   }
 };
 
-// Function to handle sign-in
 const signIn = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(
@@ -86,19 +84,31 @@ const signIn = async (email, password) => {
       email,
       password
     );
-    console.log("Sign-in successful:", userCredential.user.uid);
+    document.cookie = "userLoggedIn=true";
     window.location.replace("main/main.html");
+    document.getElementById("email").value = email;
+    console.log("Sign-in successful:", userCredential.user.uid);
   } catch (error) {
-    console.error("Sign-in error:", error.message);
+    let errorMessage = "Pastikan email dan password Anda benar.";
+    if (error.code === "auth/user-not-found") {
+      errorMessage = "Akun tidak ditemukan.";
+    }
     Swal.fire({
       icon: "error",
-      title: "Akun Tidak Ditemukan",
-      text: "Pastikan email dan password Anda benar.",
+      title: "Gagal Masuk",
+      text: errorMessage,
     });
   }
 };
 
-// Event listener for sign-in form submission
+const showSignIn = () => {
+  const sign_in_btn = document.getElementById("sign-in-btn");
+  sign_in_btn.click();
+  sign_in_btn.addEventListener("click", () => {
+    container.classList.add("sign-in-mode");
+  });
+};
+
 document.querySelector(".sign-in-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const email = document.querySelector(
@@ -110,7 +120,6 @@ document.querySelector(".sign-in-form").addEventListener("submit", (e) => {
   signIn(email, password);
 });
 
-// Event listener for sign-up form submission
 document.querySelector(".sign-up-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const email = document.querySelector(
