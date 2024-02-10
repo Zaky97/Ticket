@@ -26,6 +26,28 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+// Function to display modal box with alert message
+const showAlertModal = (message) => {
+  const modal = document.getElementById("myModal");
+  const modalMessage = document.getElementById("modal-message");
+  const closeButton = document.getElementsByClassName("close")[0];
+
+  modalMessage.textContent = message;
+  modal.style.display = "block";
+
+  // Close the modal when the close button is clicked
+  closeButton.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Close the modal when clicking anywhere outside of it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+};
+
 // Function to handle sign-up
 const signUp = async (email, password) => {
   try {
@@ -41,7 +63,9 @@ const signUp = async (email, password) => {
 
     // Sign-up successful, you can add further logic here
     console.log("Sign-up successful:", userCredential.user.uid);
-    alert("Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi.");
+    showAlertModal(
+      "Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi."
+    );
     const sign_in_btn = document.getElementById("sign-in-btn");
     sign_in_btn.click();
     sign_in_btn.addEventListener("click", () => {
@@ -51,9 +75,9 @@ const signUp = async (email, password) => {
     // Handle sign-up errors
     console.error("Sign-up error:", error.message);
     if (error.code === "auth/email-already-in-use") {
-      alert("Email Sudah Digunakan");
+      showAlertModal("Email Sudah Digunakan");
     } else {
-      alert("Terjadi kesalahan saat mendaftar pengguna baru.");
+      showAlertModal("Terjadi kesalahan saat mendaftar pengguna baru.");
     }
   }
 };
@@ -70,7 +94,7 @@ const signIn = async (email, password) => {
     window.location.replace("main/main.html");
   } catch (error) {
     console.error("Sign-in error:", error.message);
-    alert("Akun Tidak Ditemukan");
+    showAlertModal("Akun Tidak Ditemukan");
   }
 };
 
