@@ -39,10 +39,15 @@ const signUp = async (email, password) => {
     // Sign-up successful, you can add further logic here
     console.log("Sign-up successful:", userCredential.user.uid);
     alert("Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi.");
+    const sign_in_btn = document.getElementById("sign-in-btn");
+    sign_up_btn.click();
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-in-mode");
+    });
   } catch (error) {
     // Handle sign-up errors
     console.error("Sign-up error:", error.message);
-    alert("Gagal mendaftar. Silakan coba lagi.");
+    alert("Email Sudah Digunakan");
   }
 };
 
@@ -59,13 +64,6 @@ const signIn = async (email, password) => {
   } catch (error) {
     console.error("Sign-in error:", error.message);
     alert("Akun Tidak Ditemukan");
-
-    // Menambahkan event listener untuk tombol signup
-    const sign_up_btn = document.getElementById("sign-up-btn");
-    sign_up_btn.click();
-    sign_up_btn.addEventListener("click", () => {
-      container.classList.add("sign-up-mode");
-    });
   }
 };
 
