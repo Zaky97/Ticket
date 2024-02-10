@@ -32,7 +32,7 @@ const signUpAndSendEmailVerification = async (email, password) => {
 
     const methods = await fetchSignInMethodsForEmail(auth, email);
     if (methods && methods.length > 0) {
-      throw new Error("Email sudah digunakan.");
+      throw new Error("Email Sudah Digunakan");
     }
 
     const userCredential = await createUserWithEmailAndPassword(
@@ -61,12 +61,8 @@ const signUpAndSendEmailVerification = async (email, password) => {
         errorMessage =
           "Password terlalu lemah. Gunakan password dengan minimal 8 karakter.";
         break;
-      case "auth/network-request-failed":
-        errorMessage =
-          "Terjadi masalah dengan koneksi internet. Silakan coba lagi.";
-        break;
       default:
-        // Tangani kesalahan lain jika diperlukan
+        errorMessage = error.message;
         break;
     }
     Swal.fire({
