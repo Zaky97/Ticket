@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 // Firebase configuration
@@ -28,20 +29,13 @@ const auth = getAuth(app);
 // Function to handle sign-up
 const signUp = async (email, password) => {
   try {
-    // Check if the email is already in use
-    const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (methods.length > 0) {
-      console.error("Sign-up error:", "Email Sudah Digunakan");
-      alert("Email Sudah Digunakan");
-      return;
-    }
-
-    // If email is not in use, proceed with sign-up
+    // Try to create a new user
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+
     // Send email verification
     await sendEmailVerification(auth.currentUser);
 
@@ -54,9 +48,13 @@ const signUp = async (email, password) => {
       container.classList.add("sign-in-mode");
     });
   } catch (error) {
-    // Handle other sign-up errors
+    // Handle sign-up errors
     console.error("Sign-up error:", error.message);
-    alert("Terjadi kesalahan saat mendaftar pengguna baru.");
+    if (error.code === "auth/email-already-in-use") {
+      alert("Email Sudah Digunakan");
+    } else {
+      alert("Terjadi kesalahan saat mendaftar pengguna baru.");
+    }
   }
 };
 
