@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 /* style.css */
 html {
   background-color: black;
@@ -25,52 +25,52 @@ body {
   margin-top: 7px;
 }
 
- .button-Masuk {
+.button-Masuk {
   display: inline;
   justify-content: space-around;
-   width: 100px;
-   height: 40px;
-   border: none;
-   background-color: transparent;
-   cursor: pointer;
-   font-size: 16px;
-   margin-right: 20px;
- }
+  width: 100px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 20px;
+}
 
- .button-Masuk a {
+.button-Masuk a {
   font-size: 30px;
-   color: rgba(255, 255, 255, .50);
-   text-decoration: none;
-  font-family: 'Bebas Neue', sans-serif;
- }
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+}
 
- .button-Daftar {
-   width: 100px;
-   height: 40px;
-   border: none;
-   background-color: transparent;
-   outline: none; 
-   cursor: pointer;
-   font-size: 16px;
-   margin-right: 580px
- }
+.button-Daftar {
+  width: 100px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 580px;
+}
 
- .button-Daftar a {
+.button-Daftar a {
   font-size: 30px;
-  color: rgba(255, 255, 255, .50);
-   text-decoration: none;
-  font-family: 'Bebas Neue', sans-serif;
- }
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+}
 
- .button-center a:hover {
-    color: rgba(255, 255, 255, .73);
-    cursor: pointer;
- }
+.button-center a:hover {
+  color: rgba(255, 255, 255, 0.73);
+  cursor: pointer;
+}
 
 .nav-link {
   margin-right: 40px;
   font-size: 30px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .jumbotron {
@@ -79,7 +79,7 @@ body {
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
   padding: 180px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .container-text-center {
@@ -90,16 +90,17 @@ body {
 }
 
 .container h2 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-size: 25px;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .card-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 25px;
 }
 
 .card-text {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
 }
 
@@ -109,7 +110,7 @@ body {
 }
 
 .btn-primary {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   background-color: #ffc107;
   border-color: #ffc107;
 }
@@ -134,4 +135,3 @@ body {
   padding-bottom: 10px;
   font-weight: 500;
 }
-
