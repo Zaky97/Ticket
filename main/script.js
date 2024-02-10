@@ -23,3 +23,40 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const database = getDatabase(app);
+
+// Get a reference to the form
+const form = document.querySelector("form");
+
+// Add submit event listener to the form
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  // Get form values
+  const name = form.querySelector("#name").value;
+  const email = form.querySelector("#email").value;
+  const tel = form.querySelector("#tel").value;
+
+  // Push data to the database
+  const ticketsRef = ref(database, "Preorder");
+  push(ticketsRef, {
+    name: name,
+    email: email,
+    tel: tel,
+  })
+    .then(() => {
+      // Reset the form after successful submission
+      form.reset();
+      // Display success message
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Form submitted successfully!",
+        showConfirmButton: false,
+        timer: 2000, // Auto close after 2 seconds
+      });
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error("Error submitting form:", error);
+    });
+});
