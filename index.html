@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Sign in & Sign up Form</title>
+    <title>Form Pendaftaran & Masuk Tiket Konser</title>
   </head>
 
   <body>
@@ -15,23 +15,24 @@
       <div class="forms-container">
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
-            <h2 class="title">Sign in</h2>
+            <h2 class="title">Login</h2>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Kata Sandi" />
             </div>
-            <input type="submit" value="Login" class="btn solid" />
-
+            <input type="submit" value="Masuk" class="btn solid" />
           </form>
+          <button id="lupapw">Lupa Kata Sandi?</button>
+
           <form action="#" class="sign-up-form">
-            <h2 class="title">Sign up</h2>
+            <h2 class="title">Register</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Nama Pengguna" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
@@ -39,9 +40,9 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Kata Sandi" />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <input type="submit" class="btn" value="Daftar" />
 
           </form>
         </div>
@@ -50,26 +51,24 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>New here ?</h3>
+            <h3>Baru disini ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+              Selamat datang di Tiket Konser! Siap-siap untuk merasakan konser dan acara yang luar biasa.
             </p>
             <button class="btn transparent" id="sign-up-btn">
-              Sign up
+              Daftar
             </button>
           </div>
           <img src="img/log.svg" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>One of us ?</h3>
+            <h3>Sudah memiliki akun ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              Selamat datang kembali di Tiket Konser! Masuk untuk mengakses akun Anda dan acara yang akan datang.
             </p>
             <button class="btn transparent" id="sign-in-btn">
-              Sign in
+              Masuk
             </button>
           </div>
           <img src="img/register.svg" class="image" alt="" />
@@ -77,9 +76,9 @@
       </div>
 
 
-
-      <script src="app.js"></script>
-      <script type="module" src="login.js"></script>
+      <script type="module" src="script/login.js"></script>
+      <script src="script/app.js"></script>
+      <script type="module" src="script/reset.js"></script>
   </body>
 
 </html>

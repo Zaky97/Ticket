@@ -26,13 +26,15 @@ const auth = getAuth(app);
 
 const signUpAndSendEmailVerification = async (email, password) => {
   try {
-    if (password.length < 8) {
-      throw new Error("Password harus terdiri dari minimal 8 karakter.");
+    if (!email.endsWith("@gmail.com")) {
+      throw new Error("Hanya alamat Gmail yang diperbolehkan.");
     }
 
     const methods = await fetchSignInMethodsForEmail(auth, email);
     if (methods && methods.length > 0) {
-      throw new Error("Email Sudah Digunakan");
+      throw new Error(
+        "Email sudah digunakan. Gunakan email lain atau gunakan opsi lupa password."
+      );
     }
 
     const userCredential = await createUserWithEmailAndPassword(
@@ -42,16 +44,20 @@ const signUpAndSendEmailVerification = async (email, password) => {
     );
     await sendEmailVerification(auth.currentUser);
 
-    console.log("Sign-up successful:", userCredential.user.uid);
+    console.log("Pendaftaran berhasil:", userCredential.user.uid);
     Swal.fire({
       icon: "success",
       title: "Pendaftaran Berhasil!",
-      text: "Silakan periksa email Anda untuk verifikasi.",
+      text: "Silakan cek email Anda untuk verifikasi.",
     }).then(() => {
+      document.querySelector(".sign-in-form input[type='email']").value = email;
+      document.querySelector(".sign-in-form input[type='password']").value =
+        password;
+
       showSignIn();
     });
   } catch (error) {
-    let errorMessage = "Terjadi kesalahan saat mendaftar pengguna baru.";
+    let errorMessage = "Terjadi kesalahan saat mendaftarkan pengguna baru.";
     switch (error.code) {
       case "auth/email-already-in-use":
         errorMessage =
@@ -59,7 +65,7 @@ const signUpAndSendEmailVerification = async (email, password) => {
         break;
       case "auth/weak-password":
         errorMessage =
-          "Password terlalu lemah. Gunakan password dengan minimal 8 karakter.";
+          "Password terlalu lemah. Gunakan password dengan setidaknya 8 karakter.";
         break;
       default:
         errorMessage = error.message;
@@ -67,7 +73,7 @@ const signUpAndSendEmailVerification = async (email, password) => {
     }
     Swal.fire({
       icon: "error",
-      title: "Terjadi Kesalahan",
+      title: "Error",
       text: errorMessage,
     });
   }
@@ -75,15 +81,33 @@ const signUpAndSendEmailVerification = async (email, password) => {
 
 const signIn = async (email, password) => {
   try {
+    if (!email.endsWith("@gmail.com")) {
+      throw new Error("Hanya alamat Gmail yang diperbolehkan.");
+    }
+
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
+
     document.cookie = "userLoggedIn=true";
-    window.location.replace("main/main.html");
-    document.getElementById("email").value = email;
-    console.log("Sign-in successful:", userCredential.user.uid);
+
+    Swal.fire({
+      icon: "success",
+      title: "Login Berhasil!",
+      text: "Anda akan dialihkan ke halaman utama dalam 2 detik.",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      willClose: () => {
+        window.location.replace("main/main.html");
+        document.getElementById("email").value = email;
+        console.log("Masuk berhasil:", userCredential.user.uid);
+      },
+    });
   } catch (error) {
     let errorMessage = "Pastikan email dan password Anda benar.";
     if (error.code === "auth/user-not-found") {
@@ -91,7 +115,7 @@ const signIn = async (email, password) => {
     }
     Swal.fire({
       icon: "error",
-      title: "Gagal Masuk",
+      title: "Masuk Gagal",
       text: errorMessage,
     });
   }
@@ -125,4 +149,10 @@ document.querySelector(".sign-up-form").addEventListener("submit", (e) => {
     ".sign-up-form input[type='password']"
   ).value;
   signUpAndSendEmailVerification(email, password);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.cookie.indexOf("userLoggedIn=true") !== -1) {
+    window.location.replace("main/main.html");
+  }
 });
