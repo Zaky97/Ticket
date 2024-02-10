@@ -1,11 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-/* style.css */
+
 html {
   background-color: black;
-  /* background: url(images/bg.jpg) no-repeat center center fixed; */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
 }
 
@@ -16,61 +12,39 @@ body {
 }
 
 .navbar img {
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .button-center {
-  display: inline;
-  justify-content: space-around;
-  margin-top: 7px;
-}
-
-.button-Masuk {
-  display: inline;
-  justify-content: space-around;
-  width: 100px;
-  height: 40px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 16px;
-  margin-right: 20px;
-}
-
-.button-Masuk a {
-  font-size: 30px;
-  color: rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  font-family: "Bebas Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
 }
 
 .button-Daftar {
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
   border: none;
-  background-color: transparent;
-  outline: none;
   cursor: pointer;
-  font-size: 16px;
-  margin-right: 580px;
+  font-size: 18px;
 }
 
-.button-Daftar a {
-  font-size: 30px;
-  color: rgba(255, 255, 255, 0.5);
-  text-decoration: none;
+.btn-primary {
   font-family: "Bebas Neue", sans-serif;
 }
+
+.nav-link {
+  font-size: 32px;
+  /* color: rgba(255, 255, 255, 0.5); */
+  text-decoration: none;
+}
+/* 
+.button-Daftar {
+} */
 
 .button-center a:hover {
   color: rgba(255, 255, 255, 0.73);
   cursor: pointer;
-}
-
-.nav-link {
-  margin-right: 40px;
-  font-size: 30px;
-  font-family: "Bebas Neue", sans-serif;
 }
 
 .jumbotron {
@@ -78,46 +52,14 @@ body {
   background-size: cover;
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
-  padding: 180px;
-  font-family: "Bebas Neue", sans-serif;
+  padding: 150px;
 }
 
 .container-text-center {
   display: grid;
   align-items: center;
   justify-content: center;
-  padding-top: 60px;
-}
-
-.container h2 {
-  font-size: 28px;
-  font-family: "Bebas Neue", sans-serif;
-}
-
-.card-title {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 25px;
-}
-
-.card-text {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 20px;
-}
-
-.lead {
-  text-align: center;
-  font-size: 30px;
-}
-
-.btn-primary {
-  font-family: "Bebas Neue", sans-serif;
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-
-.btn-primary:hover {
-  background-color: #ff9800;
-  border-color: #ff9800;
+  padding-top: 40px;
 }
 
 .card {
@@ -131,7 +73,29 @@ body {
 }
 
 .marquee {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-nav {
+    height: auto;
+  }
+
+  .nav-link {
+    margin-right: 8px;
+  }
+
+  .jumbotron {
+    padding: 100px;
+  }
+
+  .button-center {
+    margin-top: 2px;
+  }
+  .jumbotron h1 {
+    font-size: 25px;
+    font-weight: bold;
+  }
 }

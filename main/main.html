@@ -12,8 +12,11 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
-            <img src="https://www.sman9kotabekasi.sch.id/assets/images/SMAN_9.png" width="260px">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <!-- buat aoa? -->
+            <a href="https://www.sman9kotabekasi.sch.id/">
+                <img src="https://www.sman9kotabekasi.sch.id/assets/images/SMAN_9.png" width="260px">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,10 +24,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">Beranda </a>
+                        <a class="nav-link" href="#">Home </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Acara</a>
+                        <a class="nav-link" href="#">Events</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">PRE-ORDER<span class="sr-only">(current)</span></a>
@@ -60,7 +63,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="quantity">Nomor Ponsel</label>
-                                    <input type="tel" class="form-control" id="tel" placeholder="ex +62xxx xxxx xxxx">
+                                    <input type="tel" class="form-control" id="tel" placeholder="Enter phone number"
+                                        value="+62">
                                 </div>
                                 <button type="submit" class="btn btn-primary">
                                     <span>Submit</span>
@@ -87,24 +91,19 @@
             <div class='air air3'></div>
             <div class='air air4'></div>
 
+
+
+
+            <!-- wave background -->
+
         </section>
-        <footer class="footer mt-auto py-3">
-            <div class="marquee">
-                <marquee>
-                    <span>
-                        <strong>&copy; 2024 SMAN 9 KOTA BEKASI. Allrights
-                            reserved.
-                        </strong>
-                    </span>
-                </marquee>
-            </div>
-        </footer>
 
         <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- JavaScript for Animated Wave Background -->
+        <script src="cookie-main.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="module" src="script.js"></script>
     </body>

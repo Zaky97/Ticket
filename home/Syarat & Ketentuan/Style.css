@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+html {
+  background-color: black;
+  background-size: cover;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.navbar img {
+  margin-left: 20px;
+}
+
+.button-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.button-Daftar {
+  width: 120px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn-primary {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.nav-link {
+  font-size: 32px;
+  /* color: rgba(255, 255, 255, 0.5); */
+  text-decoration: none;
+}
+
+/* 
+.button-Daftar {
+} */
+
+.button-center a:hover {
+  color: rgba(255, 255, 255, 0.73);
+  cursor: pointer;
+}
