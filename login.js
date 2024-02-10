@@ -28,6 +28,15 @@ const auth = getAuth(app);
 // Function to handle sign-up
 const signUp = async (email, password) => {
   try {
+    // Check if the email is already in use
+    const methods = await fetchSignInMethodsForEmail(auth, email);
+    if (methods.length > 0) {
+      console.error("Sign-up error:", "Email Sudah Digunakan");
+      alert("Email Sudah Digunakan");
+      return;
+    }
+
+    // If email is not in use, proceed with sign-up
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -40,14 +49,14 @@ const signUp = async (email, password) => {
     console.log("Sign-up successful:", userCredential.user.uid);
     alert("Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi.");
     const sign_in_btn = document.getElementById("sign-in-btn");
-    sign_up_btn.click();
-    sign_up_btn.addEventListener("click", () => {
+    sign_in_btn.click();
+    sign_in_btn.addEventListener("click", () => {
       container.classList.add("sign-in-mode");
     });
   } catch (error) {
-    // Handle sign-up errors
+    // Handle other sign-up errors
     console.error("Sign-up error:", error.message);
-    alert("Email Sudah Digunakan");
+    alert("Terjadi kesalahan saat mendaftar pengguna baru.");
   }
 };
 
