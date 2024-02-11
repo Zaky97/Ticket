@@ -111,7 +111,7 @@ const signIn = async (email, password) => {
         Swal.showLoading();
       },
       willClose: () => {
-        window.location.replace("main/main.html");
+        window.location.replace("home/index.html");
         document.getElementById("email").value = email;
         console.log("Masuk berhasil:", userCredential.user.uid);
       },
@@ -168,13 +168,13 @@ document.querySelector(".sign-up-form").addEventListener("submit", (e) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.cookie.indexOf("userLoggedIn=true") !== -1) {
-    window.location.replace("main/main.html");
+    window.location.replace("home/home.html");
   }
 
   // If Firebase token exists, redirect to main page
   const firebaseToken = getCookie("firebaseToken");
   if (firebaseToken) {
-    window.location.replace("preorder/preorder.html");
+    window.location.replace("home/index.html");
   }
 });
 
